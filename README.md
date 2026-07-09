@@ -33,4 +33,5 @@ moon test
 - 许可证：Apache-2.0
 - 贡献者：phjphj676
 - 发布目标：mooncakes.io
-
+- GitLink：[https://gitlink.org.cn/phjphj676/moongeoroute](https://gitlink.org.cn/phjphj676/moongeoroute)
+- GitHub：[https://github.com/phjphj676/MoonGeoRoute](https://github.com/phjphj676/MoonGeoRoute)

@@ -17,6 +17,5 @@
 本项目由创作者本人独立完成，提交历史、README、许可证、测试和示例均围绕本次参赛内容新增整理，不引入其他协作者。若后续继续扩展，将保持以 MoonBit 为主要实现语言，并持续补充可验证的有效提交。
 
 **仓库链接：**  
-- GitLink：待推送后补充  
-- GitHub：待推送后补充
-
+- GitLink：https://gitlink.org.cn/phjphj676/moongeoroute  
+- GitHub：https://github.com/phjphj676/MoonGeoRoute
