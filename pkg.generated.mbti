@@ -1,0 +1,32 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "phjphj676/moongeoroute"
+
+// Values
+pub fn bbox(Int, Int, Int, Int) -> (Int, Int, Int, Int)
+
+pub fn bbox_contains((Int, Int, Int, Int), (Int, Int)) -> Bool
+
+pub fn bbox_union((Int, Int, Int, Int), (Int, Int, Int, Int)) -> (Int, Int, Int, Int)
+
+pub fn manhattan_distance((Int, Int), (Int, Int)) -> Int
+
+pub fn plan_route((Int, Int), (Int, Int), Array[(Int, Int)], (Int, Int, Int, Int)) -> Array[(Int, Int)]?
+
+pub fn point(Int, Int) -> (Int, Int)
+
+pub fn route_bounds(Array[(Int, Int)]) -> (Int, Int, Int, Int)?
+
+pub fn route_is_clear(Array[(Int, Int)], Array[(Int, Int)], (Int, Int, Int, Int)) -> Bool
+
+pub fn route_length(Array[(Int, Int)]) -> Int
+
+pub fn route_preview(Array[(Int, Int)]) -> String
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits
+
