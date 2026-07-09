@@ -19,8 +19,8 @@ repository = "https://gitlink.org.cn/phjphj676/moongeoroute"
 
 license = "Apache-2.0"
 
-keywords = [ "moonbit", "geo", "routing", "graph", "geojson", "gis" ]
+keywords = [ "moonbit", "geo", "routing", "graph", "geojson", "gis", "route-planning" ]
 
 preferred_target = "wasm-gc"
 
-description = "MoonGeoRoute is a MoonBit library for grid route planning and region analysis."
+description = "MoonGeoRoute is a MoonBit library for fixed-point grid route planning and region analysis."
