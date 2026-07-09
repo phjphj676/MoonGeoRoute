@@ -1,6 +1,8 @@
+.moon/
+target/
+.repos/
+*.exe
+*.log
 .DS_Store
 _build/
-target/
-target
-.mooncakes/
-.moonagent/
+*.mbti

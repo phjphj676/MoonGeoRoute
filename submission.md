@@ -1,21 +1,28 @@
 # MoonGeoRoute 参赛申报书
 
-**项目名称：** MoonGeoRoute  
-**项目标识：** `moongeoroute`  
-**项目简介：** MoonGeoRoute 是一个面向 MoonBit 生态的地理路径与区域分析工具库，采用固定点网格坐标模型，提供边界判断、路径长度统计、区域约束校验、折线路径规划与路线摘要等能力，面向轻量 GIS、路网分析和地理数据预处理场景。
+**项目名称**：MoonGeoRoute  
+**项目标识**：`moongeoroute`  
+**作者**：`phjphj676`
 
-**项目定位：**  
-本项目不做单一的路径算法演示，而是把地理坐标、网格路由和区域约束放在同一套 MoonBit 接口里，后续可继续扩展 GeoJSON 子集解析、可达性分析、区域统计和路线导出等功能，具备明显的生态延展性。
+MoonGeoRoute 是一个面向 MoonBit 生态的地理路径与区域分析工具库，聚焦 `GIS + 图算法 + 空间数据处理` 的交叉方向。项目把坐标、边界框、GeoJSON 子集、空间索引和路线规划放到同一套接口里，目标是让地理数据预处理、空间查询和路线分析可以在 MoonBit 中形成完整工作流。
 
-**核心交付：**  
-1. MoonBit 核心库，包含坐标、边界、路径与路线摘要工具。  
-2. 可运行示例程序，展示典型路线规划结果。  
-3. 单元测试与基础 CI，保证可复现、可检查。  
-4. README、许可证与 Mooncakes 发布说明，满足公开仓库审查要求。
+## 选题说明
 
-**原创与提交说明：**  
-本项目由创作者本人独立完成，提交历史、README、许可证、测试和示例均围绕本次参赛内容新增整理，不引入其他协作者。若后续继续扩展，将保持以 MoonBit 为主要实现语言，并持续补充可验证的有效提交。
+地理数据处理在真实场景里通常同时涉及坐标系、空间几何、索引结构和路网搜索，单点算法很难直接落地。MoonGeoRoute 选择的是一个成熟但仍有扩展空间的方向，既能体现 MoonBit 在基础库、数据结构和算法实现上的能力，也方便后续继续加入等时圈、区域统计、路径导出和可达性分析等功能。
 
-**仓库链接：**  
-- GitLink：https://gitlink.org.cn/phjphj676/moongeoroute  
-- GitHub：https://github.com/phjphj676/MoonGeoRoute
+## 已完成内容
+
+1. 完成 `coord`、`geomath`、`geojson`、`spatial`、`graph` 五个子模块的基础结构。
+2. 提供距离计算、方位角、目标点推算、GeoJSON 过滤、Geohash、四叉树、Dijkstra、A* 等核心能力。
+3. 补充 README、许可证、CI 配置和示例说明，保证仓库结构清晰可审查。
+4. 保留可继续扩展的接口，后续可以继续做区域分析、路网分析和结果导出。
+
+## 原创性说明
+
+本项目由创作者本人独立完成，源码、文档和提交记录均围绕 MoonGeoRoute 主题整理，不引入其他协作者。项目以 MoonBit 原生实现为主，避免第三方移植代码堆叠，便于审查和后续维护。
+
+## 仓库链接
+
+- GitHub：<https://github.com/phjphj676/MoonGeoRoute>
+- GitLink：<https://gitlink.org.cn/phjphj676/moongeoroute>
+

@@ -1,37 +1,41 @@
 # MoonGeoRoute
 
-项目名称：MoonGeoRoute
+MoonGeoRoute 是一个面向 MoonBit 生态的地理路径与区域分析工具库，聚焦 `GIS + 图算法 + 空间数据处理` 的交叉场景。项目把坐标、边界框、GeoJSON 子集、空间索引和路径规划放到同一套接口里，便于把地理数据预处理、空间查询和路线分析串成完整工作流。
 
-项目标识：`moongeoroute`
+## 项目信息
 
-项目简介：MoonGeoRoute 是一个面向 MoonBit 生态的地理路径与区域分析工具库。它以固定点网格坐标为基础，提供边界判断、路径长度统计、区域围栏校验、折线路径规划和路线预览等能力，适合做轻量 GIS、路网分析和地理数据预处理。
+- 项目名称：MoonGeoRoute
+- 项目标识：`moongeoroute`
+- 作者：`phjphj676`
+- GitHub：[https://github.com/phjphj676/MoonGeoRoute](https://github.com/phjphj676/MoonGeoRoute)
+- GitLink：[https://gitlink.org.cn/phjphj676/moongeoroute](https://gitlink.org.cn/phjphj676/moongeoroute)
 
-## 解决什么问题
+## 功能范围
 
-- 把地理坐标、网格路由和区域约束放进同一套 MoonBit 接口
-- 提供可直接复用的路线规划基础能力
-- 为后续 GeoJSON 子集解析、可达性分析、区域统计留出扩展点
+- `coord`：坐标、边界框、几何基础类型
+- `geomath`：距离、方位角、目标点推算、线段简化
+- `geojson`：GeoJSON 解析、过滤、区域裁剪
+- `spatial`：Geohash、网格索引、四叉树查询
+- `graph`：路网建模、Dijkstra、A*、坐标吸附
 
-## 当前能力
+## 设计目标
 
-- 坐标与边界工具
-- 曼哈顿距离和路线长度统计
-- 路线合法性检查
-- 多候选折线路径规划
-- 路线边界摘要
+1. 让 MoonBit 可以直接处理常见地理数据流，而不是只做单点算法演示。
+2. 保持接口轻量，便于后续扩展到 GeoJSON 导出、可达性分析、区域统计和路径服务。
+3. 尽量只依赖 MoonBit 原生能力，保持可移植、可检查、可测试。
 
-## 运行方式
+## 快速使用
 
-```bash
-moon run cmd/main
-moon test
+```mbt
+test "distance example" {
+  let beijing = @coord.Coord::new(39.9042, 116.4074)
+  let shanghai = @coord.Coord::new(31.2304, 121.4737)
+  let dist = @geomath.haversine_distance(beijing, shanghai)
+  inspect(dist > 1000000.0, content="true")
+}
 ```
 
-## 仓库说明
+## 参赛说明
 
-- 主要实现语言：MoonBit
-- 许可证：Apache-2.0
-- 贡献者：phjphj676
-- 发布目标：mooncakes.io
-- GitLink：[https://gitlink.org.cn/phjphj676/moongeoroute](https://gitlink.org.cn/phjphj676/moongeoroute)
-- GitHub：[https://github.com/phjphj676/MoonGeoRoute](https://github.com/phjphj676/MoonGeoRoute)
+本仓库由创作者本人独立完成并持续整理，提交内容包括源码、README、许可证、申报材料和 CI 配置。后续如继续扩展，优先补充可验证的单元测试和更完整的空间分析示例。
+

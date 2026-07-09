@@ -1,25 +1,29 @@
-name: ci
+name: CI
 
 on:
   push:
+    branches: [ "main" ]
   pull_request:
+    branches: [ "main" ]
 
 jobs:
-  moonbit:
+  build-and-test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install MoonBit
-        uses: moonbitlang/setup-moonbit@v1
+      - name: Install MoonBit toolchain
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> $GITHUB_PATH
 
-      - name: Check
+      - name: Verify toolchain
+        run: moon version --all
+
+      - name: Run type check
         run: moon check
 
-      - name: Test
+      - name: Run all tests
         run: moon test
-
-      - name: Format
-        run: moon fmt
-
