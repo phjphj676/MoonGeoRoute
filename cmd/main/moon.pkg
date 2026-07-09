@@ -1,0 +1,7 @@
+import {
+  "phjphj676/moongeoroute",
+}
+
+options(
+  "is-main": true,
+)
