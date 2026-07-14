@@ -69,7 +69,12 @@ fn route_length_loop(route : Array[(Int, Int)], idx : Int, acc : Int) -> Int {
   }
 }
 
-fn contains_point_loop(points : Array[(Int, Int)], target : (Int, Int), idx : Int) -> Bool {
+///|
+fn contains_point_loop(
+  points : Array[(Int, Int)],
+  target : (Int, Int),
+  idx : Int,
+) -> Bool {
   if idx >= points.length() {
     false
   } else if points[idx] == target {
@@ -79,6 +84,7 @@ fn contains_point_loop(points : Array[(Int, Int)], target : (Int, Int), idx : In
   }
 }
 
+///|
 fn route_is_clear_loop(
   route : Array[(Int, Int)],
   blocked : Array[(Int, Int)],
@@ -95,6 +101,7 @@ fn route_is_clear_loop(
   }
 }
 
+///|
 fn append_line(
   route : Array[(Int, Int)],
   from : (Int, Int),
@@ -115,6 +122,7 @@ fn append_line(
   }
 }
 
+///|
 fn build_polyline_loop(
   route : Array[(Int, Int)],
   waypoints : Array[(Int, Int)],
@@ -128,6 +136,7 @@ fn build_polyline_loop(
   }
 }
 
+///|
 fn route_bounds_loop(
   route : Array[(Int, Int)],
   idx : Int,
@@ -141,10 +150,26 @@ fn route_bounds_loop(
       route,
       idx + 1,
       (
-        if p.0 < current.0 { p.0 } else { current.0 },
-        if p.1 < current.1 { p.1 } else { current.1 },
-        if p.0 > current.2 { p.0 } else { current.2 },
-        if p.1 > current.3 { p.1 } else { current.3 },
+        if p.0 < current.0 {
+          p.0
+        } else {
+          current.0
+        },
+        if p.1 < current.1 {
+          p.1
+        } else {
+          current.1
+        },
+        if p.0 > current.2 {
+          p.0
+        } else {
+          current.2
+        },
+        if p.1 > current.3 {
+          p.1
+        } else {
+          current.3
+        },
       ),
     )
   }
@@ -160,10 +185,15 @@ pub fn route_length(route : Array[(Int, Int)]) -> Int {
 }
 
 ///|
-pub fn route_is_clear(route : Array[(Int, Int)], blocked : Array[(Int, Int)], area : (Int, Int, Int, Int)) -> Bool {
+pub fn route_is_clear(
+  route : Array[(Int, Int)],
+  blocked : Array[(Int, Int)],
+  area : (Int, Int, Int, Int),
+) -> Bool {
   route_is_clear_loop(route, blocked, area, 0)
 }
 
+///|
 fn build_polyline(waypoints : Array[(Int, Int)]) -> Array[(Int, Int)] {
   let route = []
   if waypoints.length() == 0 {
@@ -174,7 +204,12 @@ fn build_polyline(waypoints : Array[(Int, Int)]) -> Array[(Int, Int)] {
   }
 }
 
-fn try_route(waypoints : Array[(Int, Int)], blocked : Array[(Int, Int)], area : (Int, Int, Int, Int)) -> Array[(Int, Int)]? {
+///|
+fn try_route(
+  waypoints : Array[(Int, Int)],
+  blocked : Array[(Int, Int)],
+  area : (Int, Int, Int, Int),
+) -> Array[(Int, Int)]? {
   let route = build_polyline(waypoints)
   if route_is_clear(route, blocked, area) {
     Some(route)
@@ -188,14 +223,25 @@ pub fn route_bounds(route : Array[(Int, Int)]) -> (Int, Int, Int, Int)? {
   if route.length() == 0 {
     None
   } else {
-    Some(route_bounds_loop(route, 1, (route[0].0, route[0].1, route[0].0, route[0].1)))
+    Some(
+      route_bounds_loop(
+        route,
+        1,
+        (route[0].0, route[0].1, route[0].0, route[0].1),
+      ),
+    )
   }
 }
 
 ///|
 /// Plan a simple grid route by trying the two direct L-shapes first and
 /// then detouring around the bounding-box edges.
-pub fn plan_route(start : (Int, Int), goal : (Int, Int), blocked : Array[(Int, Int)], area : (Int, Int, Int, Int)) -> Array[(Int, Int)]? {
+pub fn plan_route(
+  start : (Int, Int),
+  goal : (Int, Int),
+  blocked : Array[(Int, Int)],
+  area : (Int, Int, Int, Int),
+) -> Array[(Int, Int)]? {
   let direct_h = try_route([start, (goal.0, start.1), goal], blocked, area)
   match direct_h {
     Some(route) => Some(route)
@@ -204,18 +250,35 @@ pub fn plan_route(start : (Int, Int), goal : (Int, Int), blocked : Array[(Int, I
       match direct_v {
         Some(route) => Some(route)
         None => {
-          let top = try_route([start, (start.0, area.3), (goal.0, area.3), goal], blocked, area)
+          let top = try_route(
+            [start, (start.0, area.3), (goal.0, area.3), goal],
+            blocked,
+            area,
+          )
           match top {
             Some(route) => Some(route)
             None => {
-              let bottom = try_route([start, (start.0, area.1), (goal.0, area.1), goal], blocked, area)
+              let bottom = try_route(
+                [start, (start.0, area.1), (goal.0, area.1), goal],
+                blocked,
+                area,
+              )
               match bottom {
                 Some(route) => Some(route)
                 None => {
-                  let left = try_route([start, (area.0, start.1), (area.0, goal.1), goal], blocked, area)
+                  let left = try_route(
+                    [start, (area.0, start.1), (area.0, goal.1), goal],
+                    blocked,
+                    area,
+                  )
                   match left {
                     Some(route) => Some(route)
-                    None => try_route([start, (area.2, start.1), (area.2, goal.1), goal], blocked, area)
+                    None =>
+                      try_route(
+                        [start, (area.2, start.1), (area.2, goal.1), goal],
+                        blocked,
+                        area,
+                      )
                   }
                 }
               }

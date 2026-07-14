@@ -5,6 +5,7 @@
 ## 快速使用示例
 
 ```mbt check
+///|
 test "coord quick usage" {
   let beijing = @coord.Coord::new(39.9042, 116.4074)
   let bbox = @coord.BBox::new(30.0, 110.0, 45.0, 120.0)

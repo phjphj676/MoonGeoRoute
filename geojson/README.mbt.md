@@ -8,6 +8,7 @@
 ## 示例
 
 ```mbt check
+///|
 test "geojson basic example" {
   let pt = @coord.Coord::new(39.9042, 116.4074)
   let feat = @geojson.Feature::new(@coord.Geometry::Point(pt), id="beijing")

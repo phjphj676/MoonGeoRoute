@@ -8,6 +8,7 @@
 ## 示例
 
 ```mbt check
+///|
 test "geomath example" {
   let beijing = @coord.Coord::new(39.9042, 116.4074)
   let shanghai = @coord.Coord::new(31.2304, 121.4737)

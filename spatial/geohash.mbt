@@ -4,7 +4,13 @@ let base32_chars : String = "0123456789bcdefghjkmnpqrstuvwxyz"
 ///|
 /// Encodes a `Coord` into a standard Geohash string of length `precision` (between 1 and 12).
 pub fn encode_geohash(coord : @coord.Coord, precision : Int) -> String {
-  let p = if precision < 1 { 1 } else if precision > 12 { 12 } else { precision }
+  let p = if precision < 1 {
+    1
+  } else if precision > 12 {
+    12
+  } else {
+    precision
+  }
   let mut min_lat = -90.0
   let mut max_lat = 90.0
   let mut min_lon = -180.0

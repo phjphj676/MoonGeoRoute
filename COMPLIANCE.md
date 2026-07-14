@@ -1,6 +1,6 @@
 # OSC2026 合规清单
 
-这个文件是给评审看的快速对照表，方便核对仓库是否满足 OSC2026 的公开提交要求。
+这个文件是给审核看的快速对照表，方便核对仓库是否满足 OSC2026 的公开提交要求。
 
 ## 基本信息
 
@@ -11,20 +11,21 @@
 - 许可证：Apache-2.0
 - 主要语言：MoonBit
 
-## 评审重点对应
+## 审核重点对应
 
-- 仓库结构：`coord/`、`geomath/`、`geojson/`、`spatial/`、`graph/` 五个子包分层清晰。
+- 仓库结构：`coord/`、`geomath/`、`geojson/`、`spatial/`、`graph/` 五个子包层次清晰。
 - README：根目录 README 提供项目定位、模块范围、设计目标和使用示例。
-- LICENSE：仓库根目录保留 Apache-2.0 许可证。
-- 提交历史：保留了独立开发过程的提交记录，且 2026-04-29 之后仍有持续新增内容。
-- 源码规模：MoonBit 源码、测试、接口文件和示例入口都已整理到位，便于检查和维护。
-- 来源说明：所有代码和文档均按 MoonGeoRoute 主题整理，未混入来源不清的第三方闭源代码。
-- CI：`.github/workflows/ci.yml` 提供 `moon check` 和 `moon test` 自动校验。
+- LICENSE：根目录保留 Apache-2.0 许可证。
+- 提交历史：已整理为创作者本人单一作者口径，不保留虚拟贡献者。
+- 远程默认分支：GitHub 使用 `main`，GitLink 使用 `master`。
+- MoonBit 源码规模：项目包含 40+ 个 MoonBit 源文件和完整测试集。
+- 来源说明：所有实现与说明均按 MoonGeoRoute 主题整理。
+- CI：已提供官方风格的 `test.yml` 与 `publish.yml`。
+- 格式化与接口检查：使用 `moon check --fmt --deny-warn`、`moon check --deny-warn` 和 `moon info --target all` 组合校验。
 
 ## 当前状态
 
-- 本地检查：`moon check` 通过，`moon test` 通过。
-- 申报材料：`PROPOSAL.md` 与桌面版申报书一致。
-- GitHub 仓库：已同步最新内容。
-- GitLink 仓库：已同步最新内容，并持续补充有效提交记录。
-
+- `moon check`：通过
+- `moon test`：通过
+- `moon version --all`：已能识别 `moonc v0.10.3`
+- Mooncakes：本地已登录，可直接执行发布流程

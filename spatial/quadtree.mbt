@@ -36,10 +36,30 @@ fn[T] QuadTree::subdivide(self : QuadTree[T]) -> Unit {
   let mid_lat = (self.bbox.min_lat + self.bbox.max_lat) / 2.0
   let mid_lon = (self.bbox.min_lon + self.bbox.max_lon) / 2.0
 
-  let nw_box = @coord.BBox::new(mid_lat, self.bbox.min_lon, self.bbox.max_lat, mid_lon)
-  let ne_box = @coord.BBox::new(mid_lat, mid_lon, self.bbox.max_lat, self.bbox.max_lon)
-  let sw_box = @coord.BBox::new(self.bbox.min_lat, self.bbox.min_lon, mid_lat, mid_lon)
-  let se_box = @coord.BBox::new(self.bbox.min_lat, mid_lon, mid_lat, self.bbox.max_lon)
+  let nw_box = @coord.BBox::new(
+    mid_lat,
+    self.bbox.min_lon,
+    self.bbox.max_lat,
+    mid_lon,
+  )
+  let ne_box = @coord.BBox::new(
+    mid_lat,
+    mid_lon,
+    self.bbox.max_lat,
+    self.bbox.max_lon,
+  )
+  let sw_box = @coord.BBox::new(
+    self.bbox.min_lat,
+    self.bbox.min_lon,
+    mid_lat,
+    mid_lon,
+  )
+  let se_box = @coord.BBox::new(
+    self.bbox.min_lat,
+    mid_lon,
+    mid_lat,
+    self.bbox.max_lon,
+  )
 
   self.nw = Some(QuadTree::new(nw_box, capacity=self.capacity))
   self.ne = Some(QuadTree::new(ne_box, capacity=self.capacity))
@@ -93,7 +113,10 @@ pub fn[T] QuadTree::insert(self : QuadTree[T], item : SpatialItem[T]) -> Bool {
 
 ///|
 /// Queries all items inside a query bounding box (`bbox`).
-pub fn[T] QuadTree::query(self : QuadTree[T], query_box : @coord.BBox) -> Array[SpatialItem[T]] {
+pub fn[T] QuadTree::query(
+  self : QuadTree[T],
+  query_box : @coord.BBox,
+) -> Array[SpatialItem[T]] {
   let result = []
   if !self.bbox.intersects(query_box) {
     return result
@@ -107,28 +130,36 @@ pub fn[T] QuadTree::query(self : QuadTree[T], query_box : @coord.BBox) -> Array[
     match self.nw {
       Some(child) => {
         let child_res = child.query(query_box)
-        for x in child_res { result.push(x) }
+        for x in child_res {
+          result.push(x)
+        }
       }
       None => ()
     }
     match self.ne {
       Some(child) => {
         let child_res = child.query(query_box)
-        for x in child_res { result.push(x) }
+        for x in child_res {
+          result.push(x)
+        }
       }
       None => ()
     }
     match self.sw {
       Some(child) => {
         let child_res = child.query(query_box)
-        for x in child_res { result.push(x) }
+        for x in child_res {
+          result.push(x)
+        }
       }
       None => ()
     }
     match self.se {
       Some(child) => {
         let child_res = child.query(query_box)
-        for x in child_res { result.push(x) }
+        for x in child_res {
+          result.push(x)
+        }
       }
       None => ()
     }

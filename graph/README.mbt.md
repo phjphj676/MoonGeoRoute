@@ -8,6 +8,7 @@
 ## 快速使用示例
 
 ```mbt check
+///|
 test "graph routing example" {
   let net = @graph.RoadNetwork::new()
   let bj = @coord.Coord::new(39.9042, 116.4074)
@@ -15,7 +16,7 @@ test "graph routing example" {
   net.add_node("BJ", bj)
   net.add_node("SH", sh)
   net.add_edge("BJ", "SH", bidirectional=true)
-  
+
   match net.dijkstra("BJ", "SH") {
     Some((path, _)) => inspect(path.length(), content="2")
     None => fail("No path found")

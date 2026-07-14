@@ -31,3 +31,22 @@ test "geojson feature collection parsing and spatial filtering" {
     None => fail("Expected feature bj")
   }
 }
+
+///|
+test "geojson feature collection stats" {
+  let p1 = @coord.Coord::new(39.9042, 116.4074)
+  let p2 = @coord.Coord::new(31.2304, 121.4737)
+  let fc = FeatureCollection::new([
+    Feature::new(@coord.Geometry::Point(p1), id="bj"),
+    Feature::new(@coord.Geometry::Point(p2), id="sh"),
+  ])
+
+  inspect(fc.feature_count(), content="2")
+  match fc.bbox() {
+    Some(bb) => {
+      inspect(bb.contains(p1), content="true")
+      inspect(bb.contains(p2), content="true")
+    }
+    None => fail("Expected feature collection bbox")
+  }
+}

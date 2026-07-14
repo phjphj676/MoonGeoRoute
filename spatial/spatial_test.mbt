@@ -50,11 +50,15 @@ test "quadtree subdivision and range queries" {
   let qtree : QuadTree[Int] = QuadTree::new(bbox, capacity=2)
 
   // Insert 5 items to trigger subdivision
-  for i in 1..=5 {
+  for i in 1..<=5 {
     let lat = i.to_double() * 10.0
     let lon = i.to_double() * 10.0
     let coord = @coord.Coord::raw(lat, lon)
-    let item : SpatialItem[Int] = { id: "p" + i.to_string(), coord, data: i * 100 }
+    let item : SpatialItem[Int] = {
+      id: "p" + i.to_string(),
+      coord,
+      data: i * 100,
+    }
     let _ = qtree.insert(item)
     ()
   }

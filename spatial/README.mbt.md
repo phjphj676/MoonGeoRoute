@@ -8,8 +8,11 @@
 ## 示例
 
 ```mbt check
+///|
 test "spatial quick example" {
-  let grid : @spatial.GridIndex[String] = @spatial.GridIndex::new(cell_size_deg=1.0)
+  let grid : @spatial.GridIndex[String] = @spatial.GridIndex::new(
+    cell_size_deg=1.0,
+  )
   let bj = @coord.Coord::new(39.9042, 116.4074)
   grid.insert("bj", bj, "Beijing")
   let query_res = grid.query_bbox(@coord.BBox::new(35.0, 110.0, 45.0, 120.0))

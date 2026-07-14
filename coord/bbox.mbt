@@ -13,7 +13,7 @@ pub fn BBox::new(
   min_lat : Double,
   min_lon : Double,
   max_lat : Double,
-  max_lon : Double
+  max_lon : Double,
 ) -> BBox {
   let actual_min_lat = if min_lat < max_lat { min_lat } else { max_lat }
   let actual_max_lat = if min_lat < max_lat { max_lat } else { min_lat }
@@ -117,7 +117,7 @@ pub fn BBox::width_deg(self : BBox) -> Double {
 }
 
 ///|
-pub impl Show for BBox with output(self, logger) {
+pub impl Show for BBox with fn output(self, logger) {
   logger.write_string(
     "BBox(" +
     self.min_lat.to_string() +

@@ -1,6 +1,9 @@
 ///|
 /// Checks if a coordinate point is inside a closed polygon boundary using the Ray-Casting algorithm.
-pub fn point_in_polygon(point : @coord.Coord, polygon_ring : Array[@coord.Coord]) -> Bool {
+pub fn point_in_polygon(
+  point : @coord.Coord,
+  polygon_ring : Array[@coord.Coord],
+) -> Bool {
   let n = polygon_ring.length()
   if n < 3 {
     return false
@@ -12,7 +15,10 @@ pub fn point_in_polygon(point : @coord.Coord, polygon_ring : Array[@coord.Coord]
     let vj = polygon_ring[j]
     let lat_between = (vi.lat > point.lat) != (vj.lat > point.lat)
     if lat_between {
-      let intersect_lon = (vj.lon - vi.lon) * (point.lat - vi.lat) / (vj.lat - vi.lat) + vi.lon
+      let intersect_lon = (vj.lon - vi.lon) *
+        (point.lat - vi.lat) /
+        (vj.lat - vi.lat) +
+        vi.lon
       if point.lon < intersect_lon {
         inside = !inside
       }
@@ -28,7 +34,7 @@ pub fn segment_intersection(
   p1 : @coord.Coord,
   p2 : @coord.Coord,
   q1 : @coord.Coord,
-  q2 : @coord.Coord
+  q2 : @coord.Coord,
 ) -> @coord.Coord? {
   let x1 = p1.lon
   let y1 = p1.lat
@@ -58,7 +64,11 @@ pub fn segment_intersection(
 
 ///|
 /// Computes approximate perpendicular distance from point `p` to line segment `a-b` in meters.
-pub fn point_to_segment_distance_meters(p : @coord.Coord, a : @coord.Coord, b : @coord.Coord) -> Double {
+pub fn point_to_segment_distance_meters(
+  p : @coord.Coord,
+  a : @coord.Coord,
+  b : @coord.Coord,
+) -> Double {
   let dx = b.lon - a.lon
   let dy = b.lat - a.lat
   let len_sq = dx * dx + dy * dy
@@ -78,7 +88,10 @@ pub fn point_to_segment_distance_meters(p : @coord.Coord, a : @coord.Coord, b : 
 
 ///|
 /// Simplifies a LineString (trajectory) using the Douglas-Peucker algorithm given a distance tolerance in meters.
-pub fn simplify_linestring(path : Array[@coord.Coord], tolerance_meters : Double) -> Array[@coord.Coord] {
+pub fn simplify_linestring(
+  path : Array[@coord.Coord],
+  tolerance_meters : Double,
+) -> Array[@coord.Coord] {
   if path.length() <= 2 {
     return path.copy()
   }
@@ -100,7 +113,7 @@ pub fn simplify_linestring(path : Array[@coord.Coord], tolerance_meters : Double
     let right_slice = path[max_index:].to_owned()
     let left_simplified = simplify_linestring(left_slice, tolerance_meters)
     let right_simplified = simplify_linestring(right_slice, tolerance_meters)
-    
+
     let result = left_simplified.copy()
     for i in 1..<right_simplified.length() {
       result.push(right_simplified[i])

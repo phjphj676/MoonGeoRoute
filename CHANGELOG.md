@@ -1,15 +1,15 @@
 # 变更记录
 
+## 2026-07-14
+
+- 将 GitHub Actions 改为官方 MoonBit `test.yml` 风格，并补充 `publish.yml`。
+- 新增 `FeatureCollection` 统计与包围盒能力。
+- 增补 GeoJSON 测试，扩大源码与测试覆盖范围。
+- 同步 README、合规说明和 Mooncakes 发布说明。
+
 ## 2026-07-09
 
 - 统一项目名称、项目标识、作者信息和仓库链接。
-- 修正 `moon.mod`、`README.md`、`PROPOSAL.md`、`README.mbt.md` 中的旧仓库引用。
-- 补充源码来源说明、申报材料和提交说明。
-- 验证 `moon check` 和 `moon test` 通过。
-
-## 2026-07-09 之前
-
-- 建立 `coord`、`geomath`、`geojson`、`spatial`、`graph` 五个子模块。
-- 提供坐标、空间几何、GeoJSON 过滤、Geohash、四叉树、Dijkstra 和 A* 等基础能力。
-- 加入 CI 与示例入口，保证仓库可运行、可检查、可审查。
-
+- 修正 `moon.mod`、README、申报材料中的旧引用。
+- 补充源代码来源说明、申报材料和提交说明。
+- 验证 `moon check` 与 `moon test` 通过。

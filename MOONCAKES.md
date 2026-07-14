@@ -4,22 +4,21 @@ MoonGeoRoute 的 MoonBit 模块名为 `phjphj676/moongeoroute`。
 
 ## 现状
 
-- 当前仓库已经具备发布条件：`moon.mod`、README、测试、CI、申报材料都已整理。
-- 本会话里还没有可用的 Mooncakes 登录凭证，所以我没有伪造发布结果。
+- 仓库已经具备发布所需的 `moon.mod`、README、测试、CI 和说明文件。
+- 本地 MoonBit 工具链已登录 Mooncakes，可以直接执行发布。
+- 发布流程已在仓库中提供 `publish.yml`，便于后续自动化。
 
-## 后续发布命令
-
-在 Mooncakes 账号准备好之后，可以直接在仓库根目录执行：
+## 手动发布
 
 ```bash
 moon publish
 ```
 
-如果发布前要再确认状态，可以先跑：
+发布前建议先确认：
 
 ```bash
 moon whoami
+moon version --all
 moon check
 moon test
 ```
-

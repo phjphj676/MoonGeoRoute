@@ -22,7 +22,7 @@ pub(all) struct FeatureCollection {
 pub fn Feature::new(
   geometry : @coord.Geometry,
   id? : String,
-  properties? : Map[String, Json]
+  properties? : Map[String, Json],
 ) -> Feature {
   let props = match properties {
     Some(m) => m
@@ -49,7 +49,8 @@ fn coord_from_json(json : Json) -> @coord.Coord raise GeoJsonParseError {
   match json {
     Json::Array([Json::Number(lon, ..), Json::Number(lat, ..), ..]) =>
       @coord.Coord::raw(lat, lon)
-    _ => raise GeoJsonParseError("Expected [longitude, latitude] coordinate array")
+    _ =>
+      raise GeoJsonParseError("Expected [longitude, latitude] coordinate array")
   }
 }
 
@@ -124,77 +125,101 @@ pub fn geometry_to_json(geom : @coord.Geometry) -> Json {
 
 ///|
 /// Parses a GeoJSON `Geometry` object.
-pub fn geometry_from_json(json : Json) -> @coord.Geometry raise GeoJsonParseError {
+pub fn geometry_from_json(
+  json : Json,
+) -> @coord.Geometry raise GeoJsonParseError {
   match json {
     Json::Object(map) => {
       let type_str = match map.get("type") {
         Some(Json::String(s)) => s
-        _ => raise GeoJsonParseError("Missing or invalid 'type' field in Geometry")
+        _ =>
+          raise GeoJsonParseError("Missing or invalid 'type' field in Geometry")
       }
       let coords_json = match map.get("coordinates") {
         Some(c) => c
-        None => raise GeoJsonParseError("Missing 'coordinates' field in Geometry")
+        None =>
+          raise GeoJsonParseError("Missing 'coordinates' field in Geometry")
       }
       match type_str {
         "Point" => @coord.Geometry::Point(coord_from_json(coords_json))
-        "MultiPoint" => match coords_json {
-          Json::Array(arr) => {
-            let pts = []
-            for item in arr {
-              pts.push(coord_from_json(item))
-            }
-            @coord.Geometry::MultiPoint(pts)
-          }
-          _ => raise GeoJsonParseError("Expected coordinates array for MultiPoint")
-        }
-        "LineString" => match coords_json {
-          Json::Array(arr) => {
-            let pts = []
-            for item in arr {
-              pts.push(coord_from_json(item))
-            }
-            @coord.Geometry::LineString(pts)
-          }
-          _ => raise GeoJsonParseError("Expected coordinates array for LineString")
-        }
-        "MultiLineString" => match coords_json {
-          Json::Array(outer) => {
-            let lines = []
-            for line_json in outer {
-              match line_json {
-                Json::Array(arr) => {
-                  let pts = []
-                  for item in arr {
-                    pts.push(coord_from_json(item))
-                  }
-                  lines.push(pts)
-                }
-                _ => raise GeoJsonParseError("Expected inner array for LineString in MultiLineString")
+        "MultiPoint" =>
+          match coords_json {
+            Json::Array(arr) => {
+              let pts = []
+              for item in arr {
+                pts.push(coord_from_json(item))
               }
+              @coord.Geometry::MultiPoint(pts)
             }
-            @coord.Geometry::MultiLineString(lines)
+            _ =>
+              raise GeoJsonParseError(
+                "Expected coordinates array for MultiPoint",
+              )
           }
-          _ => raise GeoJsonParseError("Expected outer array for MultiLineString")
-        }
-        "Polygon" => match coords_json {
-          Json::Array(outer) => {
-            let rings = []
-            for ring_json in outer {
-              match ring_json {
-                Json::Array(arr) => {
-                  let pts = []
-                  for item in arr {
-                    pts.push(coord_from_json(item))
-                  }
-                  rings.push(pts)
-                }
-                _ => raise GeoJsonParseError("Expected inner ring array for Polygon")
+        "LineString" =>
+          match coords_json {
+            Json::Array(arr) => {
+              let pts = []
+              for item in arr {
+                pts.push(coord_from_json(item))
               }
+              @coord.Geometry::LineString(pts)
             }
-            @coord.Geometry::Polygon(rings)
+            _ =>
+              raise GeoJsonParseError(
+                "Expected coordinates array for LineString",
+              )
           }
-          _ => raise GeoJsonParseError("Expected outer rings array for Polygon")
-        }
+        "MultiLineString" =>
+          match coords_json {
+            Json::Array(outer) => {
+              let lines = []
+              for line_json in outer {
+                match line_json {
+                  Json::Array(arr) => {
+                    let pts = []
+                    for item in arr {
+                      pts.push(coord_from_json(item))
+                    }
+                    lines.push(pts)
+                  }
+                  _ =>
+                    raise GeoJsonParseError(
+                      "Expected inner array for LineString in MultiLineString",
+                    )
+                }
+              }
+              @coord.Geometry::MultiLineString(lines)
+            }
+            _ =>
+              raise GeoJsonParseError(
+                "Expected outer array for MultiLineString",
+              )
+          }
+        "Polygon" =>
+          match coords_json {
+            Json::Array(outer) => {
+              let rings = []
+              for ring_json in outer {
+                match ring_json {
+                  Json::Array(arr) => {
+                    let pts = []
+                    for item in arr {
+                      pts.push(coord_from_json(item))
+                    }
+                    rings.push(pts)
+                  }
+                  _ =>
+                    raise GeoJsonParseError(
+                      "Expected inner ring array for Polygon",
+                    )
+                }
+              }
+              @coord.Geometry::Polygon(rings)
+            }
+            _ =>
+              raise GeoJsonParseError("Expected outer rings array for Polygon")
+          }
         _ => raise GeoJsonParseError("Unsupported geometry type: " + type_str)
       }
     }
@@ -241,7 +266,10 @@ pub fn Feature::from_json_value(json : Json) -> Feature raise GeoJsonParseError 
         Some(Json::Object(m)) => m
         Some(Json::Null) => {}
         None => {}
-        _ => raise GeoJsonParseError("Feature properties must be an object or null")
+        _ =>
+          raise GeoJsonParseError(
+            "Feature properties must be an object or null",
+          )
       }
       { id, properties: props, geometry: geom }
     }
@@ -264,7 +292,9 @@ pub fn FeatureCollection::to_json(self : FeatureCollection) -> Json {
 
 ///|
 /// Parses a GeoJSON `FeatureCollection` object.
-pub fn FeatureCollection::from_json_value(json : Json) -> FeatureCollection raise GeoJsonParseError {
+pub fn FeatureCollection::from_json_value(
+  json : Json,
+) -> FeatureCollection raise GeoJsonParseError {
   match json {
     Json::Object(map) => {
       let type_str = match map.get("type") {
@@ -272,11 +302,14 @@ pub fn FeatureCollection::from_json_value(json : Json) -> FeatureCollection rais
         _ => raise GeoJsonParseError("FeatureCollection missing valid 'type'")
       }
       if type_str != "FeatureCollection" {
-        raise GeoJsonParseError("Expected type 'FeatureCollection', got: " + type_str)
+        raise GeoJsonParseError(
+          "Expected type 'FeatureCollection', got: " + type_str,
+        )
       }
       let features_json = match map.get("features") {
         Some(Json::Array(arr)) => arr
-        _ => raise GeoJsonParseError("FeatureCollection missing 'features' array")
+        _ =>
+          raise GeoJsonParseError("FeatureCollection missing 'features' array")
       }
       let features = []
       for f_json in features_json {
@@ -290,10 +323,10 @@ pub fn FeatureCollection::from_json_value(json : Json) -> FeatureCollection rais
 
 ///|
 /// Parses GeoJSON text string directly into a `FeatureCollection`.
-pub fn parse_geojson(text : String) -> FeatureCollection raise GeoJsonParseError {
-  let json = try {
-    @json.parse(text)
-  } catch {
+pub fn parse_geojson(
+  text : String,
+) -> FeatureCollection raise GeoJsonParseError {
+  let json = @json.parse(text) catch {
     _ => raise GeoJsonParseError("Invalid JSON string format")
   }
   FeatureCollection::from_json_value(json)
@@ -301,7 +334,10 @@ pub fn parse_geojson(text : String) -> FeatureCollection raise GeoJsonParseError
 
 ///|
 /// Converts a `FeatureCollection` to pretty string format.
-pub fn FeatureCollection::stringify_geojson(self : FeatureCollection, indent? : Int) -> String {
+pub fn FeatureCollection::stringify_geojson(
+  self : FeatureCollection,
+  indent? : Int,
+) -> String {
   let ind = match indent {
     Some(n) => n
     None => 2

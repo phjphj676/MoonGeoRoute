@@ -38,7 +38,11 @@ pub fn RoadNetwork::new(cell_size_deg? : Double) -> RoadNetwork {
 
 ///|
 /// Adds a node with a geographical coordinate into the road network.
-pub fn RoadNetwork::add_node(self : RoadNetwork, id : String, coord : @coord.Coord) -> Unit {
+pub fn RoadNetwork::add_node(
+  self : RoadNetwork,
+  id : String,
+  coord : @coord.Coord,
+) -> Unit {
   let node = { id, coord }
   self.nodes.set(id, node)
   self.spatial_index.insert(id, coord, id)
@@ -54,7 +58,7 @@ pub fn RoadNetwork::add_edge(
   from_id : String,
   to_id : String,
   weight? : Double,
-  bidirectional? : Bool
+  bidirectional? : Bool,
 ) -> Unit {
   let n_from = match self.nodes.get(from_id) {
     Some(n) => n
@@ -82,7 +86,12 @@ pub fn RoadNetwork::add_edge(
     None => false
   }
   if bidi {
-    let rev_edge = { from_id: to_id, to_id: from_id, distance_meters: dist, weight: w }
+    let rev_edge = {
+      from_id: to_id,
+      to_id: from_id,
+      distance_meters: dist,
+      weight: w,
+    }
     match self.adjacency.get(to_id) {
       Some(arr) => arr.push(rev_edge)
       None => self.adjacency.set(to_id, [rev_edge])
@@ -92,7 +101,10 @@ pub fn RoadNetwork::add_edge(
 
 ///|
 /// Snaps a geographical coordinate to the nearest graph node using the spatial grid index.
-pub fn RoadNetwork::nearest_node(self : RoadNetwork, target : @coord.Coord) -> (Node, Double)? {
+pub fn RoadNetwork::nearest_node(
+  self : RoadNetwork,
+  target : @coord.Coord,
+) -> (Node, Double)? {
   match self.spatial_index.nearest_neighbor(target) {
     Some((item, dist)) =>
       match self.nodes.get(item.id) {

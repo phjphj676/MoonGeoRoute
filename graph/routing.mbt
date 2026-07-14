@@ -51,10 +51,12 @@ fn MinHeap::pop(self : MinHeap) -> PQItem? {
       let left = 2 * i + 1
       let right = 2 * i + 2
       let mut smallest = i
-      if left < self.items.length() && self.items[left].cost < self.items[smallest].cost {
+      if left < self.items.length() &&
+        self.items[left].cost < self.items[smallest].cost {
         smallest = left
       }
-      if right < self.items.length() && self.items[right].cost < self.items[smallest].cost {
+      if right < self.items.length() &&
+        self.items[right].cost < self.items[smallest].cost {
         smallest = right
       }
       if smallest != i {
@@ -72,7 +74,11 @@ fn MinHeap::pop(self : MinHeap) -> PQItem? {
 
 ///|
 /// Computes shortest path using Dijkstra's algorithm from `start_id` to `end_id`. Returns path nodes and total weight.
-pub fn RoadNetwork::dijkstra(self : RoadNetwork, start_id : String, end_id : String) -> (Array[Node], Double)? {
+pub fn RoadNetwork::dijkstra(
+  self : RoadNetwork,
+  start_id : String,
+  end_id : String,
+) -> (Array[Node], Double)? {
   if self.nodes.get(start_id) is None || self.nodes.get(end_id) is None {
     return None
   }
@@ -149,7 +155,11 @@ pub fn RoadNetwork::dijkstra(self : RoadNetwork, start_id : String, end_id : Str
 
 ///|
 /// Computes shortest path using A* search from `start_id` to `end_id` guided by Haversine distance heuristics.
-pub fn RoadNetwork::a_star(self : RoadNetwork, start_id : String, end_id : String) -> (Array[Node], Double)? {
+pub fn RoadNetwork::a_star(
+  self : RoadNetwork,
+  start_id : String,
+  end_id : String,
+) -> (Array[Node], Double)? {
   let end_node = match self.nodes.get(end_id) {
     Some(n) => n
     None => return None
@@ -202,7 +212,10 @@ pub fn RoadNetwork::a_star(self : RoadNetwork, start_id : String, end_id : Strin
             prev.set(v, u)
             match self.nodes.get(v) {
               Some(v_node) => {
-                let h = @geomath.haversine_distance(v_node.coord, end_node.coord)
+                let h = @geomath.haversine_distance(
+                  v_node.coord,
+                  end_node.coord,
+                )
                 heap.push({ node_id: v, cost: alt + h })
               }
               None => ()
@@ -245,7 +258,7 @@ pub fn RoadNetwork::a_star(self : RoadNetwork, start_id : String, end_id : Strin
 pub fn RoadNetwork::find_path_by_coords(
   self : RoadNetwork,
   start_coord : @coord.Coord,
-  end_coord : @coord.Coord
+  end_coord : @coord.Coord,
 ) -> (Array[Node], Double)? {
   let start_node = match self.nearest_node(start_coord) {
     Some((node, _)) => node

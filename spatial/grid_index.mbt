@@ -33,7 +33,12 @@ fn[T] GridIndex::cell_key(self : GridIndex[T], c : @coord.Coord) -> String {
 
 ///|
 /// Inserts a spatial item into the grid index.
-pub fn[T] GridIndex::insert(self : GridIndex[T], id : String, coord : @coord.Coord, data : T) -> Unit {
+pub fn[T] GridIndex::insert(
+  self : GridIndex[T],
+  id : String,
+  coord : @coord.Coord,
+  data : T,
+) -> Unit {
   let key = self.cell_key(coord)
   let item = { id, coord, data }
   match self.cells.get(key) {
@@ -44,15 +49,18 @@ pub fn[T] GridIndex::insert(self : GridIndex[T], id : String, coord : @coord.Coo
 
 ///|
 /// Queries all spatial items located inside the specified geographic bounding box `bbox`.
-pub fn[T] GridIndex::query_bbox(self : GridIndex[T], bbox : @coord.BBox) -> Array[SpatialItem[T]] {
+pub fn[T] GridIndex::query_bbox(
+  self : GridIndex[T],
+  bbox : @coord.BBox,
+) -> Array[SpatialItem[T]] {
   let min_gx = Double::floor(bbox.min_lon / self.cell_size_deg).to_int()
   let max_gx = Double::floor(bbox.max_lon / self.cell_size_deg).to_int()
   let min_gy = Double::floor(bbox.min_lat / self.cell_size_deg).to_int()
   let max_gy = Double::floor(bbox.max_lat / self.cell_size_deg).to_int()
 
   let result = []
-  for gx in min_gx..=max_gx {
-    for gy in min_gy..=max_gy {
+  for gx in min_gx..<=max_gx {
+    for gy in min_gy..<=max_gy {
       let key = gx.to_string() + "_" + gy.to_string()
       match self.cells.get(key) {
         Some(arr) =>
@@ -70,7 +78,10 @@ pub fn[T] GridIndex::query_bbox(self : GridIndex[T], bbox : @coord.BBox) -> Arra
 
 ///|
 /// Finds the nearest spatial item and its distance in meters from `target` coordinate using grid expansion.
-pub fn[T] GridIndex::nearest_neighbor(self : GridIndex[T], target : @coord.Coord) -> (SpatialItem[T], Double)? {
+pub fn[T] GridIndex::nearest_neighbor(
+  self : GridIndex[T],
+  target : @coord.Coord,
+) -> (SpatialItem[T], Double)? {
   let mut best_item : SpatialItem[T]? = None
   let mut min_dist = 1.0e18
 
@@ -78,10 +89,10 @@ pub fn[T] GridIndex::nearest_neighbor(self : GridIndex[T], target : @coord.Coord
   let tgy = Double::floor(target.lat / self.cell_size_deg).to_int()
 
   // Expanding ring search up to radius 20 cells
-  for ring in 0..=20 {
+  for ring in 0..<=20 {
     let mut found_in_ring = false
-    for dx in (-ring)..=ring {
-      for dy in (-ring)..=ring {
+    for dx in -ring..<=ring {
+      for dy in -ring..<=ring {
         if Int::abs(dx) == ring || Int::abs(dy) == ring {
           let gx = tgx + dx
           let gy = tgy + dy
