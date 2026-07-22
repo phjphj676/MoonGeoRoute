@@ -84,6 +84,7 @@ pub fn[T] GridIndex::nearest_neighbor(
 ) -> (SpatialItem[T], Double)? {
   let mut best_item : SpatialItem[T]? = None
   let mut min_dist = 1.0e18
+  let mut min_found_ring = -1
 
   let tgx = Double::floor(target.lon / self.cell_size_deg).to_int()
   let tgy = Double::floor(target.lat / self.cell_size_deg).to_int()
@@ -112,8 +113,12 @@ pub fn[T] GridIndex::nearest_neighbor(
         }
       }
     }
-    // If found and ring > 0, check next ring to guarantee true global nearest neighbor
-    if found_in_ring && ring > 0 {
+    // If found and min_found_ring is not set, set it
+    if found_in_ring && min_found_ring == -1 {
+      min_found_ring = ring
+    }
+    // Break after checking exactly one full ring beyond the first ring a match was found in
+    if min_found_ring != -1 && ring > min_found_ring {
       break
     }
   }

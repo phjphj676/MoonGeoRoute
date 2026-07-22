@@ -154,11 +154,14 @@ pub fn RoadNetwork::dijkstra(
 }
 
 ///|
-/// Computes shortest path using A* search from `start_id` to `end_id` guided by Haversine distance heuristics.
+/// Computes shortest path using A* search from `start_id` to `end_id` guided by an optional heuristic function.
+/// By default, it uses Haversine distance, which is admissible if edge weights represent geographic distance.
+/// If using custom edge weights (e.g., travel time), you MUST provide a custom heuristic to ensure optimality.
 pub fn RoadNetwork::a_star(
   self : RoadNetwork,
   start_id : String,
   end_id : String,
+  heuristic? : (Node, Node) -> Double,
 ) -> (Array[Node], Double)? {
   let end_node = match self.nodes.get(end_id) {
     Some(n) => n
@@ -166,6 +169,11 @@ pub fn RoadNetwork::a_star(
   }
   if self.nodes.get(start_id) is None {
     return None
+  }
+
+  let h_func = match heuristic {
+    Some(f) => f
+    None => fn(u, v) { @geomath.haversine_distance(u.coord, v.coord) }
   }
 
   let dist : Map[String, Double] = {}
@@ -190,7 +198,7 @@ pub fn RoadNetwork::a_star(
     }
     match self.nodes.get(u) {
       Some(u_node) => {
-        let h_u = @geomath.haversine_distance(u_node.coord, end_node.coord)
+        let h_u = h_func(u_node, end_node)
         if top.cost - h_u > current_dist + 1.0e-7 {
           continue
         }
@@ -212,10 +220,7 @@ pub fn RoadNetwork::a_star(
             prev.set(v, u)
             match self.nodes.get(v) {
               Some(v_node) => {
-                let h = @geomath.haversine_distance(
-                  v_node.coord,
-                  end_node.coord,
-                )
+                let h = h_func(v_node, end_node)
                 heap.push({ node_id: v, cost: alt + h })
               }
               None => ()
@@ -259,6 +264,7 @@ pub fn RoadNetwork::find_path_by_coords(
   self : RoadNetwork,
   start_coord : @coord.Coord,
   end_coord : @coord.Coord,
+  heuristic? : (Node, Node) -> Double,
 ) -> (Array[Node], Double)? {
   let start_node = match self.nearest_node(start_coord) {
     Some((node, _)) => node
@@ -268,5 +274,8 @@ pub fn RoadNetwork::find_path_by_coords(
     Some((node, _)) => node
     None => return None
   }
-  self.a_star(start_node.id, end_node.id)
+  match heuristic {
+    Some(h) => self.a_star(start_node.id, end_node.id, heuristic=h)
+    None => self.a_star(start_node.id, end_node.id)
+  }
 }

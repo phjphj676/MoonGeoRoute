@@ -220,6 +220,44 @@ pub fn geometry_from_json(
             _ =>
               raise GeoJsonParseError("Expected outer rings array for Polygon")
           }
+        "MultiPolygon" =>
+          match coords_json {
+            Json::Array(outer) => {
+              let polys = []
+              for poly_json in outer {
+                match poly_json {
+                  Json::Array(rings_json) => {
+                    let rings = []
+                    for ring_json in rings_json {
+                      match ring_json {
+                        Json::Array(arr) => {
+                          let pts = []
+                          for item in arr {
+                            pts.push(coord_from_json(item))
+                          }
+                          rings.push(pts)
+                        }
+                        _ =>
+                          raise GeoJsonParseError(
+                            "Expected inner ring array for MultiPolygon",
+                          )
+                      }
+                    }
+                    polys.push(rings)
+                  }
+                  _ =>
+                    raise GeoJsonParseError(
+                      "Expected outer rings array for MultiPolygon",
+                    )
+                }
+              }
+              @coord.Geometry::MultiPolygon(polys)
+            }
+            _ =>
+              raise GeoJsonParseError(
+                "Expected outer polys array for MultiPolygon",
+              )
+          }
         _ => raise GeoJsonParseError("Unsupported geometry type: " + type_str)
       }
     }
