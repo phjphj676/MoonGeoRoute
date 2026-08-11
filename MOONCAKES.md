@@ -1,6 +1,6 @@
 # Mooncakes 发布说明
 
-MoonGeoRoute 的 MoonBit 模块名为 `phjphj676/moongeoroute`，当前修订版本为 `0.1.1`。
+MoonGeoRoute 的 MoonBit 模块名为 `phjphj676/moongeoroute`，当前修订版本为 `0.1.2`。
 
 ## 现状
 
