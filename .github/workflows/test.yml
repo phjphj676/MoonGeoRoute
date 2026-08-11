@@ -21,10 +21,14 @@ jobs:
           moon version --all
 
       - name: Check Formatting
-        run: moon fmt --deny-warn
+        run: |
+          moon fmt
+          git diff --exit-code
 
       - name: Check Info
-        run: moon info --deny-warn
+        run: |
+          moon info
+          git diff --exit-code
 
       - name: Build and Check
         run: moon check
