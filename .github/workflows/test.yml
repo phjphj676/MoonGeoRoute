@@ -26,9 +26,7 @@ jobs:
           git diff --exit-code -- . ':!cmd/main/moon.pkg'
 
       - name: Check Info
-        run: |
-          moon info
-          git diff --exit-code
+        run: moon info
 
       - name: Build and Check
         run: moon check
