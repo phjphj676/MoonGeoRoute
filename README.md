@@ -31,6 +31,7 @@ moon run cmd/main
 - `geojson`：GeoJSON 解析、过滤、区域裁剪
 - `spatial`：Geohash、网格索引、四叉树查询
 - `graph`：路网建模、Dijkstra、A*、坐标吸附
+- `graph` 路由审计：`route_metrics` 汇总距离、权重、节点数、包围盒并检查路径连续性
 - `geojson` 统计：FeatureCollection 计数、整体包围盒
 
 ## 数据与边界覆盖

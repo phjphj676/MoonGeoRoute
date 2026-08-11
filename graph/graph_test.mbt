@@ -74,3 +74,62 @@ test "routing reports missing and unreachable destinations" {
     Some(_) => fail("Unreachable destination must return None")
   }
 }
+
+///|
+test "route metrics audit distance, cost, bounds, and connectivity" {
+  let net = RoadNetwork::new(cell_size_deg=1.0)
+  let a = @coord.Coord::new(39.9042, 116.4074)
+  let b = @coord.Coord::new(31.2304, 121.4737)
+  let c = @coord.Coord::new(23.1291, 113.2644)
+  net.add_node("bj", a)
+  net.add_node("sh", b)
+  net.add_node("gz", c)
+  net.add_edge("bj", "sh", weight=10.0)
+  net.add_edge("sh", "gz", weight=20.0)
+
+  let bj = match net.nodes.get("bj") {
+    Some(n) => n
+    None => fail("missing bj")
+  }
+  let sh = match net.nodes.get("sh") {
+    Some(n) => n
+    None => fail("missing sh")
+  }
+  let gz = match net.nodes.get("gz") {
+    Some(n) => n
+    None => fail("missing gz")
+  }
+  let path = [bj, sh, gz]
+  let metrics = net.route_metrics(path)
+  inspect(metrics.node_count, content="3")
+  inspect(metrics.edge_count, content="2")
+  inspect(metrics.total_weight, content="30")
+  inspect(metrics.connected, content="true")
+  match metrics.bounds {
+    Some(bounds) => {
+      inspect(bounds.contains(a), content="true")
+      inspect(bounds.contains(c), content="true")
+    }
+    None => fail("Expected route bounds")
+  }
+  inspect(net.segment_weight(path[0], path[1]), content="10")
+}
+
+///|
+test "route metrics marks a disconnected diagnostic path" {
+  let net = RoadNetwork::new(cell_size_deg=1.0)
+  net.add_node("A", @coord.Coord::new(0.0, 0.0))
+  net.add_node("B", @coord.Coord::new(0.0, 1.0))
+  let a = match net.nodes.get("A") {
+    Some(n) => n
+    None => fail("missing A")
+  }
+  let b = match net.nodes.get("B") {
+    Some(n) => n
+    None => fail("missing B")
+  }
+  let metrics = net.route_metrics([a, b])
+  inspect(metrics.connected, content="false")
+  inspect(metrics.edge_count, content="1")
+  inspect(metrics.distance_meters > 100000.0, content="true")
+}

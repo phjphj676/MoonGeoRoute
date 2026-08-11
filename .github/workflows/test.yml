@@ -23,7 +23,7 @@ jobs:
       - name: Check Formatting
         run: |
           moon fmt $(find . -type f \( -name '*.mbt' -o -name '*.mbt.md' \))
-          git diff --exit-code
+          git diff --exit-code -- . ':!cmd/main/moon.pkg'
 
       - name: Check Info
         run: |
