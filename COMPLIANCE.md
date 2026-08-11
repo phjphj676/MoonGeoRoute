@@ -28,4 +28,4 @@
 - `moon check`：通过
 - `moon test`：通过
 - `moon version --all`：已能识别 `moonc v0.10.3`
-- Mooncakes：本地已登录，可直接执行发布流程
+- Mooncakes：本地登录状态与参赛作者账号仍需在发布前核对；以 `moon whoami` 显示的账号和 Mooncakes 上的模块归属为准。

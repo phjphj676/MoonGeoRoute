@@ -1,0 +1,10 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {"type": "Feature", "id": "beijing", "properties": {"name": "Beijing"}, "geometry": {"type": "Point", "coordinates": [116.4074, 39.9042]}},
+    {"type": "Feature", "id": "shanghai", "properties": {"name": "Shanghai"}, "geometry": {"type": "Point", "coordinates": [121.4737, 31.2304]}},
+    {"type": "Feature", "id": "guangzhou", "properties": {"name": "Guangzhou"}, "geometry": {"type": "Point", "coordinates": [113.2644, 23.1291]}},
+    {"type": "Feature", "id": "shenzhen", "properties": {"name": "Shenzhen"}, "geometry": {"type": "Point", "coordinates": [114.0579, 22.5431]}},
+    {"type": "Feature", "id": "chengdu", "properties": {"name": "Chengdu"}, "geometry": {"type": "Point", "coordinates": [104.0665, 30.5728]}}
+  ]
+}

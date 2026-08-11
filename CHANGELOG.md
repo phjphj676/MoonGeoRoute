@@ -1,5 +1,12 @@
 # 变更记录
 
+## 2026-08-11
+
+- 增加非法坐标、空输入、边界裁剪、不可达路由和畸形 GeoJSON 等边界测试，测试总数提升到 29 个。
+- 增加五城市 WGS84 GeoJSON 基准夹具、基准复现说明和 README 使用边界说明。
+- 修正 GitHub Actions 的 MoonBit 安装方式，避免引用不存在的 setup action。
+- 清理 GitLink remote 中的明文凭据；发布前需重新确认 Mooncakes 账号与模块命名空间归属。
+
 ## 2026-07-14
 
 - 将 GitHub Actions 改为官方 MoonBit `test.yml` 风格，并补充 `publish.yml`。

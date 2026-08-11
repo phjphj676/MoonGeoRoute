@@ -10,6 +10,18 @@ test "coord normalization and bounds validation" {
 }
 
 ///|
+test "coord rejects invalid latitude and handles exact longitude edges" {
+  try Coord::new(90.0001, 0.0) catch {
+    InvalidCoordError(message) =>
+      inspect(message, content="Latitude out of bounds [-90, 90]: 90.0001")
+  } noraise {
+    _ => fail("Expected invalid latitude to raise")
+  }
+  inspect(Coord::new(-90.0, -180.0).lon, content="-180")
+  inspect(Coord::new(90.0, 540.0).lon, content="180")
+}
+
+///|
 test "bbox creation and containment" {
   let bbox = BBox::new(30.0, 110.0, 40.0, 120.0)
   let beijing = Coord::new(39.9042, 116.4074)
@@ -29,6 +41,20 @@ test "bbox intersections and expansion" {
   let expanded = b1.expand_by_margin(1.0)
   inspect(expanded.min_lat, content="-1")
   inspect(expanded.max_lat, content="11")
+}
+
+///|
+test "bbox handles empty input, reversed bounds, and world clipping" {
+  match BBox::from_coords([]) {
+    None => ()
+    Some(_) => fail("Empty coordinate input must return None")
+  }
+  let reversed = BBox::new(10.0, 20.0, -10.0, -20.0)
+  inspect(reversed.min_lat, content="-10")
+  inspect(reversed.max_lon, content="20")
+  let clipped = reversed.expand_by_margin(1000.0)
+  inspect(clipped.min_lat, content="-90")
+  inspect(clipped.max_lat, content="90")
 }
 
 ///|

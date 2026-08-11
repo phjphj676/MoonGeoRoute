@@ -50,3 +50,23 @@ test "geojson feature collection stats" {
     None => fail("Expected feature collection bbox")
   }
 }
+
+///|
+test "geojson preserves a multipolygon and rejects malformed coordinates" {
+  let text = "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"id\":\"islands\",\"geometry\":{\"type\":\"MultiPolygon\",\"coordinates\":[[[[116.0,39.0],[117.0,39.0],[117.0,40.0],[116.0,39.0]]],[[[121.0,31.0],[122.0,31.0],[122.0,32.0],[121.0,31.0]]]]},\"properties\":{}}]}"
+  let fc = parse_geojson(text)
+  inspect(fc.feature_count(), content="1")
+  match fc.features[0].geometry {
+    @coord.Geometry::MultiPolygon(polys) => inspect(polys.length(), content="2")
+    _ => fail("Expected a multipolygon")
+  }
+  try
+    parse_geojson(
+      "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[]}}]}",
+    )
+  catch {
+    GeoJsonParseError(_) => ()
+  } noraise {
+    _ => fail("Malformed coordinates must raise GeoJsonParseError")
+  }
+}

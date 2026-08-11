@@ -59,3 +59,18 @@ test "a_star routing and coordinate snapping" {
     None => fail("Should snap coordinates and find path")
   }
 }
+
+///|
+test "routing reports missing and unreachable destinations" {
+  let net = RoadNetwork::new(cell_size_deg=1.0)
+  net.add_node("A", @coord.Coord::new(0.0, 0.0))
+  net.add_node("B", @coord.Coord::new(0.0, 1.0))
+  match net.dijkstra("A", "missing") {
+    None => ()
+    Some(_) => fail("Unknown destination must return None")
+  }
+  match net.a_star("A", "B") {
+    None => ()
+    Some(_) => fail("Unreachable destination must return None")
+  }
+}
