@@ -15,14 +15,14 @@ jobs:
       - name: Setup MoonBit
         shell: bash
         run: |
-          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | MOONBIT_INSTALL_VERSION=0.10.3 bash
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
           export PATH="$HOME/.moon/bin:$PATH"
           echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
           moon version --all
 
       - name: Check Formatting
         run: |
-          moon fmt
+          moon fmt $(find . -type f \( -name '*.mbt' -o -name '*.mbt.md' \))
           git diff --exit-code
 
       - name: Check Info
