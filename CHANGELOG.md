@@ -6,6 +6,7 @@
 - 增加五城市 WGS84 GeoJSON 基准夹具、基准复现说明和 README 使用边界说明。
 - 修正 GitHub Actions 的 MoonBit 安装方式，避免引用不存在的 setup action。
 - 清理 GitLink remote 中的明文凭据；发布前需重新确认 Mooncakes 账号与模块命名空间归属。
+- 发布版本提升至 `0.1.1`，避免覆盖已存在的 `0.1.0`。
 
 ## 2026-07-14
 
