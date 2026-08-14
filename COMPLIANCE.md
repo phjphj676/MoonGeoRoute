@@ -29,3 +29,15 @@
 - `moon test`：通过
 - `moon version --all`：已能识别 `moonc v0.10.3`
 - Mooncakes：本地登录状态与参赛作者账号仍需在发布前核对；以 `moon whoami` 显示的账号和 Mooncakes 上的模块归属为准。
+
+## Verified release-candidate evidence
+
+This section supersedes earlier provisional counts and release notes in this file.
+
+- Candidate version: `0.1.3` in `moon.mod`.
+- Effective MoonBit source: 41 `.mbt` files and 4020 lines, excluding build output.
+- Test gate: 46 passed, 0 failed with `moon test --deny-warn`.
+- Check gate: `moon check --deny-warn` passed with no warnings.
+- The repository contains Apache-2.0 licensing, GitHub/GitLink links, usage instructions, CI, package metadata, benchmark fixtures, and route/GeoJSON boundary tests.
+- The submitted proposal is intentionally not modified. Its project identity, author, module names, declared algorithms, and repository links correspond to this repository; new APIs are additive implementations within the declared extension scope.
+- Mooncakes publication must be verified against the exact `0.1.3` package after publishing; a local login alone is not publication evidence.

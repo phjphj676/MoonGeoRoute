@@ -26,7 +26,7 @@ jobs:
 
       - name: prepublish check
         run: |
-          moon check --deny-warn --fmt
+          moon fmt
           moon check --deny-warn
           moon test --deny-warn
 

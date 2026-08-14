@@ -36,3 +36,7 @@ MoonGeoRoute 是一个面向 MoonBit 生态的地理路径与区域分析工具�
 
 - GitHub：[https://github.com/phjphj676/MoonGeoRoute](https://github.com/phjphj676/MoonGeoRoute)
 - GitLink：[https://gitlink.org.cn/phjphj676/moongeoroute](https://gitlink.org.cn/phjphj676/moongeoroute)
+
+## Correspondence note
+
+The formal submitted baseline is `C:\Users\33046\Downloads\MoonGeoRoute-申报书.md`. It is not edited by repository maintenance. The project name, identifier, author, GitHub URL, GitLink URL, five module names, GeoJSON/spatial-index/routing scope, and declared extension direction match the current repository.

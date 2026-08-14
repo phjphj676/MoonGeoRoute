@@ -25,3 +25,15 @@ moon run cmd/main
 | 数据集 | 节点/边 | 查询数 | 算法 | 成功率 | 平均耗时 | 环境 |
 | --- | ---: | ---: | --- | ---: | ---: | --- |
 | cn-city-points fixture | 5 / 0 | 过滤与最近邻 | BBox/GridIndex | 100% | 见本地运行记录 | MoonBit 0.10.3 |
+
+## Additional reproducible fixture
+
+`benchmarks/fixtures/global-city-points.geojson` contains 12 real city-centre reference points spanning Europe, Asia, Oceania, and the Americas. It is suitable for deterministic GeoJSON parsing, bounding-box filtering, Web Mercator conversion, grid density, and nearest-match checks. The coordinates are reference points rather than authoritative administrative boundaries or road geometry; production road-network claims require a separately licensed OpenStreetMap extract and a recorded import manifest.
+
+For the current release candidate:
+
+```text
+moon check --deny-warn  -> pass
+moon test --deny-warn   -> 46 passed, 0 failed
+source inventory        -> 41 .mbt files, 4020 lines
+```

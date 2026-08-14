@@ -1,0 +1,17 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {"type":"Feature","properties":{"name":"London","country":"GB"},"geometry":{"type":"Point","coordinates":[-0.1276,51.5072]}},
+    {"type":"Feature","properties":{"name":"Paris","country":"FR"},"geometry":{"type":"Point","coordinates":[2.3522,48.8566]}},
+    {"type":"Feature","properties":{"name":"Berlin","country":"DE"},"geometry":{"type":"Point","coordinates":[13.4050,52.5200]}},
+    {"type":"Feature","properties":{"name":"Moscow","country":"RU"},"geometry":{"type":"Point","coordinates":[37.6173,55.7558]}},
+    {"type":"Feature","properties":{"name":"Dubai","country":"AE"},"geometry":{"type":"Point","coordinates":[55.2708,25.2048]}},
+    {"type":"Feature","properties":{"name":"Mumbai","country":"IN"},"geometry":{"type":"Point","coordinates":[72.8777,19.0760]}},
+    {"type":"Feature","properties":{"name":"Singapore","country":"SG"},"geometry":{"type":"Point","coordinates":[103.8198,1.3521]}},
+    {"type":"Feature","properties":{"name":"Tokyo","country":"JP"},"geometry":{"type":"Point","coordinates":[139.6917,35.6895]}},
+    {"type":"Feature","properties":{"name":"Sydney","country":"AU"},"geometry":{"type":"Point","coordinates":[151.2093,-33.8688]}},
+    {"type":"Feature","properties":{"name":"Vancouver","country":"CA"},"geometry":{"type":"Point","coordinates":[-123.1207,49.2827]}},
+    {"type":"Feature","properties":{"name":"New York","country":"US"},"geometry":{"type":"Point","coordinates":[-74.0060,40.7128]}},
+    {"type":"Feature","properties":{"name":"Sao Paulo","country":"BR"},"geometry":{"type":"Point","coordinates":[-46.6333,-23.5505]}}
+  ]
+}

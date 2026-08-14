@@ -49,6 +49,16 @@ moon run cmd/main
 - GitHub: https://github.com/phjphj676/MoonGeoRoute
 - GitLink: https://gitlink.org.cn/phjphj676/moongeoroute
 
+## Current acceptance evidence (2026-08-14)
+
+- Release candidate: `0.1.3`.
+- Effective MoonBit source: 41 `.mbt` files / 4020 lines.
+- Automated tests: 46 passed with `moon test --deny-warn`.
+- Static gate: `moon check --deny-warn`.
+- Boundary coverage includes invalid coordinates, empty inputs, clipped latitude, malformed GeoJSON rings, disconnected graphs, radius limits, and route cost limits.
+- Reproducible fixtures: `benchmarks/fixtures/cn-city-points.geojson` and `benchmarks/fixtures/global-city-points.geojson`.
+- The submitted proposal is preserved at `C:\Users\33046\Downloads\MoonGeoRoute-申报书.md`; repository enhancements stay within its declared GIS, spatial-index, GeoJSON, and routing scope.
+
 ## 合规
 
 - MoonBit: 主要实现语言

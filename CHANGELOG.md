@@ -1,5 +1,14 @@
 # 变更记录
 
+## 2026-08-14
+
+- Added Web Mercator projection, slippy-map tile conversion, and projected bounding boxes.
+- Added polyline metrics, interpolation/sampling, polygon area/centroid, circle rings, and closest-point diagnostics.
+- Added recursive GeoJSON validation reports for coordinate ranges, line lengths, polygon closure, and nested geometries.
+- Added spatial radius, ordered nearest-match, density, and regular-grid analysis APIs.
+- Added road-network counts, edge checks, breadth-first reachability, import audit statistics, and route limit checks.
+- Added a global-city GeoJSON fixture and boundary-focused regression tests; the release candidate now contains 41 MoonBit source files and 46 passing tests.
+
 ## 2026-08-11
 
 - 增加非法坐标、空输入、边界裁剪、不可达路由和畸形 GeoJSON 等边界测试，测试总数提升到 29 个。
