@@ -56,7 +56,7 @@ moon run cmd/main
 
 ## Current acceptance evidence (2026-08-14)
 
-- Release candidate: `0.1.4`.
+- Published release: `0.1.4`.
 - Effective MoonBit source: 41 `.mbt` files / 4020 lines.
 - Automated tests: 46 passed with `moon test --deny-warn`.
 - Static gate: `moon check --deny-warn`.

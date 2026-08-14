@@ -40,4 +40,4 @@ This section supersedes earlier provisional counts and release notes in this fil
 - Check gate: `moon check --deny-warn` passed with no warnings.
 - The repository contains Apache-2.0 licensing, GitHub/GitLink links, usage instructions, CI, package metadata, benchmark fixtures, and route/GeoJSON boundary tests.
 - The submitted proposal is intentionally not modified. Its project identity, author, module names, declared algorithms, and repository links correspond to this repository; new APIs are additive implementations within the declared extension scope.
-- Mooncakes publication will be verified by a successful `moon publish` response for the exact `0.1.4` package; the packaged copy must also pass `moon check`.
+- Mooncakes publication was verified by a successful `moon publish` response for the exact `0.1.4` package; the packaged copy also passed `moon check`.
