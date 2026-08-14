@@ -10,8 +10,8 @@
 | GitHub `main` | 与本地提交一致 |
 | GitLink `main` | 与本地提交一致 |
 | GitLink `master` | 与本地提交一致 |
-| MoonBit 模块 | `phjphj676/moongeoroute@0.1.3` |
-| Mooncakes | 已发布，发布包复检通过 |
+| MoonBit 模块 | `phjphj676/moongeoroute@0.1.4` |
+| Mooncakes | `0.1.3` 已发布；`0.1.4` 待本轮发布复检 |
 | 严格检查 | `moon check --deny-warn` 通过 |
 | 严格测试 | `moon test --deny-warn`：46/46 通过 |
 | 运行示例 | `moon run cmd/main` 正常 |

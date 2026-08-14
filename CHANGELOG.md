@@ -1,5 +1,11 @@
 # 变更记录
 
+## 2026-08-14 (0.1.4)
+
+- Synchronized package-level API documentation with the accepted implementation.
+- Corrected the stale routing example and release-status statements.
+- Added release evidence and legally bounded real-data benchmark reproduction guidance.
+
 ## 2026-08-14
 
 - Added Web Mercator projection, slippy-map tile conversion, and projected bounding boxes.
