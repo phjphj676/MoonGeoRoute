@@ -16,3 +16,7 @@ test "geojson basic example" {
   inspect(fc.features.length(), content="1")
 }
 ```
+
+## 输入校验
+
+解析后可以调用 `FeatureCollection::validate` 检查坐标范围、线串最小点数、Polygon 闭合环和嵌套 MultiGeometry，并通过 `ValidationReport` 获取错误/警告统计。

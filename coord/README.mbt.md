@@ -12,3 +12,7 @@ test "coord quick usage" {
   inspect(bbox.contains(beijing), content="true")
 }
 ```
+
+## 投影与瓦片
+
+`Coord::to_web_mercator`、`WebMercatorPoint::to_coord` 和 `Coord::to_tile` 可用于地图瓦片服务；投影纬度会按 Web Mercator 的有效范围裁剪。

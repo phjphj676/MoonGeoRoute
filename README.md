@@ -33,6 +33,11 @@ moon run cmd/main
 - `graph`：路网建模、Dijkstra、A*、坐标吸附
 - `graph` 路由审计：`route_metrics` 汇总距离、权重、节点数、包围盒并检查路径连续性
 - `geojson` 统计：FeatureCollection 计数、整体包围盒
+- `coord` 投影工具：Web Mercator、瓦片坐标、边界框切分与坐标平移
+- `geomath` 分析工具：折线量测、等距采样、多边形面积/质心和最近点
+- `geojson` 校验工具：坐标范围、线长度、闭合环和嵌套几何校验报告
+- `spatial` 分析工具：半径查询、排序近邻、网格密度报告
+- `graph` 网络审计：连通节点、边检查、网络统计和路线距离/权重约束
 
 ## 数据与边界覆盖
 

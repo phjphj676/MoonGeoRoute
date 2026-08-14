@@ -19,3 +19,7 @@ test "spatial quick example" {
   inspect(query_res.length(), content="1")
 }
 ```
+
+## 半径与密度查询
+
+在范围查询之外，`GridIndex::query_radius` 提供 Haversine 精确距离过滤，`nearest_matches` 返回排序后的近邻，`density_report` 汇总网格占用和点密度。

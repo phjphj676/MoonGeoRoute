@@ -16,19 +16,19 @@
 - 仓库结构：`coord/`、`geomath/`、`geojson/`、`spatial/`、`graph/` 五个子包层次清晰。
 - README：根目录 README 提供项目定位、模块范围、设计目标和使用示例。
 - LICENSE：根目录保留 Apache-2.0 许可证。
-- 提交历史：已整理为创作者本人单一作者口径，不保留虚拟贡献者。
+- 提交历史：公开 GitHub/GitLink 默认分支的可见提交作者与项目作者一致；本地未发布备份引用不作为提交材料。
 - 远程默认分支：GitHub 使用 `main`，GitLink 使用 `master`。
-- MoonBit 源码规模：项目包含 40+ 个 MoonBit 源文件和完整测试集。
+- MoonBit 源码规模：项目包含 41 个 MoonBit 源文件，其中 29 个实现文件、12 个测试文件。
 - 来源说明：所有实现与说明均按 MoonGeoRoute 主题整理。
 - CI：已提供官方风格的 `test.yml` 与 `publish.yml`。
-- 格式化与接口检查：使用 `moon check --fmt --deny-warn`、`moon check --deny-warn` 和 `moon info --target all` 组合校验。
+- 格式化与接口检查：使用 `moon fmt`、`moon check --deny-warn`、`moon test --deny-warn` 和 `moon info` 组合校验。
 
 ## 当前状态
 
 - `moon check`：通过
 - `moon test`：通过
 - `moon version --all`：已能识别 `moonc v0.10.3`
-- Mooncakes：本地登录状态与参赛作者账号仍需在发布前核对；以 `moon whoami` 显示的账号和 Mooncakes 上的模块归属为准。
+- Mooncakes：`phjphj676/moongeoroute@0.1.3` 已完成发布，发布前校验和发布包复检均通过。
 
 ## Verified release-candidate evidence
 
@@ -40,4 +40,4 @@ This section supersedes earlier provisional counts and release notes in this fil
 - Check gate: `moon check --deny-warn` passed with no warnings.
 - The repository contains Apache-2.0 licensing, GitHub/GitLink links, usage instructions, CI, package metadata, benchmark fixtures, and route/GeoJSON boundary tests.
 - The submitted proposal is intentionally not modified. Its project identity, author, module names, declared algorithms, and repository links correspond to this repository; new APIs are additive implementations within the declared extension scope.
-- Mooncakes publication must be verified against the exact `0.1.3` package after publishing; a local login alone is not publication evidence.
+- Mooncakes publication was verified by a successful `moon publish` response for the exact `0.1.3` package; the packaged copy also passed `moon check`.

@@ -17,3 +17,7 @@ test "geomath example" {
   inspect(is_reasonable, content="true")
 }
 ```
+
+## 路径量测
+
+`polyline_metrics`、`sample_polyline`、`polygon_area_m2`、`polygon_centroid` 和 `closest_point_on_polyline` 用于轨迹统计、区域面积和定位吸附等实际场景。

@@ -23,3 +23,7 @@ test "graph routing example" {
   }
 }
 ```
+
+## 网络质量审计
+
+`network_stats`、`reachable_nodes` 和 `has_edge` 可用于检查导入路网的孤立节点与连通性；`route_within_limits` 可在业务侧应用距离和权重上限。
