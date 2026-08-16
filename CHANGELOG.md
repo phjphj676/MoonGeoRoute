@@ -1,5 +1,10 @@
 # 变更记录
 
+## 2026-08-16 (0.1.5)
+
+- 发布严格诊断修正版，native、wasm、wasm-gc 和 JS 目标均完成验证。
+- 更新 Mooncakes 发布证据；不修改正式提交的申报书。
+
 ## 2026-08-14 (0.1.4)
 
 - Synchronized package-level API documentation with the accepted implementation.

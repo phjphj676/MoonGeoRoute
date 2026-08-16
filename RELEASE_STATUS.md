@@ -1,21 +1,21 @@
 # MoonGeoRoute 发布验收状态
 
-更新时间：2026-08-14
+更新时间：2026-08-16
 
 ## 已核验状态
 
 | 项目 | 结果 |
 | --- | --- |
-| 本地提交 | `16a6912` |
-| GitHub `main` | 与本地提交一致 |
-| GitLink `main` | 与本地提交一致 |
-| GitLink `master` | 与本地提交一致 |
-| MoonBit 模块 | `phjphj676/moongeoroute@0.1.4` |
-| Mooncakes | `0.1.4` 已发布，发布包复检通过 |
+| 发布提交 | 本次 `0.1.5` 发布提交 |
+| GitHub `main` | 与发布提交一致 |
+| GitLink `main` | 与发布提交一致 |
+| GitLink `master` | 与发布提交一致 |
+| MoonBit 模块 | `phjphj676/moongeoroute@0.1.5` |
+| Mooncakes | `0.1.5` 已发布，发布包复检通过 |
 | 严格检查 | `moon check --deny-warn` 通过 |
 | 严格测试 | `moon test --deny-warn`：46/46 通过 |
 | 运行示例 | `moon run cmd/main` 正常 |
-| 源码规模 | 41 个 `.mbt` 文件，4020 行 |
+| 源码规模 | 34 个受跟踪 `.mbt` 文件，4056 行 |
 
 ## 申报材料边界
 

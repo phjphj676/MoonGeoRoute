@@ -54,10 +54,10 @@ moon run cmd/main
 - GitHub: https://github.com/phjphj676/MoonGeoRoute
 - GitLink: https://gitlink.org.cn/phjphj676/moongeoroute
 
-## Current acceptance evidence (2026-08-14)
+## Current acceptance evidence (2026-08-16)
 
-- Published release: `0.1.4`.
-- Effective MoonBit source: 41 `.mbt` files / 4020 lines.
+- Published release: `0.1.5`.
+- Effective MoonBit source: 34 tracked `.mbt` files / 4056 lines.
 - Automated tests: 46 passed with `moon test --deny-warn`.
 - Static gate: `moon check --deny-warn`.
 - Boundary coverage includes invalid coordinates, empty inputs, clipped latitude, malformed GeoJSON rings, disconnected graphs, radius limits, and route cost limits.
