@@ -8,9 +8,14 @@ on:
 
 jobs:
   build_and_test:
+    name: build-and-test (${{ matrix.target }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [native, wasm, wasm-gc, js]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup MoonBit
         shell: bash
@@ -29,7 +34,7 @@ jobs:
         run: moon info
 
       - name: Build and Check
-        run: moon check
+        run: moon check --deny-warn --target ${{ matrix.target }}
 
       - name: Run Tests
-        run: moon test
+        run: moon test --deny-warn --target ${{ matrix.target }}

@@ -1,6 +1,6 @@
 # MoonGeoRoute 基准数据与复现说明
 
-本文件把“真实数据验证”和“算法压力测试”分开记录，避免把小型示例误称为生产路网基准。
+本文件把“真实数据验证”和“算法压力测试”分开记录，避免把小型示例误称为生产路网基准。端到端复现见 [`benchmarks/REAL_WORLD_WORKFLOW.md`](benchmarks/REAL_WORLD_WORKFLOW.md)。
 
 ## 已提交的可复现夹具
 
@@ -13,8 +13,8 @@
 ## 推荐命令
 
 ```bash
-moon check --deny-warn
-moon test --deny-warn
+moon check --deny-warn --target all
+moon test --deny-warn --target all
 moon run cmd/main
 ```
 
@@ -24,7 +24,7 @@ moon run cmd/main
 
 | 数据集 | 节点/边 | 查询数 | 算法 | 成功率 | 平均耗时 | 环境 |
 | --- | ---: | ---: | --- | ---: | ---: | --- |
-| cn-city-points fixture | 5 / 0 | 过滤与最近邻 | BBox/GridIndex | 100% | 见本地运行记录 | MoonBit 0.10.3 |
+| cn-city-points fixture | 5 / 0 | 过滤与最近邻 | BBox/GridIndex | 100% | 见本地运行记录 | MoonBit 0.10.7 |
 
 ## Additional reproducible fixture
 
@@ -34,6 +34,6 @@ For the current release candidate:
 
 ```text
 moon check --deny-warn  -> pass
-moon test --deny-warn   -> 46 passed, 0 failed
-source inventory        -> 41 .mbt files, 4020 lines
+moon test --deny-warn --target all -> 47 passed, 0 failed on native/wasm/wasm-gc/js
+source inventory        -> 36 tracked .mbt files, 4182 lines
 ```

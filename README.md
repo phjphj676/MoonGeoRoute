@@ -38,11 +38,13 @@ moon run cmd/main
 - `geojson` 校验工具：坐标范围、线长度、闭合环和嵌套几何校验报告
 - `spatial` 分析工具：半径查询、排序近邻、网格密度报告
 - `graph` 网络审计：连通节点、边检查、网络统计和路线距离/权重约束
+- `scenarios` 端到端场景：真实城市点覆盖分析、服务网络路由和路径审计
 
 ## 数据与边界覆盖
 
 - `benchmarks/fixtures/cn-city-points.geojson`：北京、上海、广州、深圳和成都的 WGS84 城市中心点，用于 GeoJSON 解析、包围盒过滤和空间索引的可复现实例。
 - `BENCHMARKS.md`：记录数据来源说明、规模、运行方法和结果记录格式；不把合成数据的结果冒充真实路网性能。
+- `benchmarks/REAL_WORLD_WORKFLOW.md`：记录真实城市点到服务网络路由的完整可复现场景和数据合规边界。
 - 边界测试覆盖非法纬度、经度归一化、空坐标集合、反向边界、世界范围裁剪、空路网/不可达路径、畸形 GeoJSON 和 MultiPolygon。
 
 ## API 使用方式
@@ -56,10 +58,10 @@ moon run cmd/main
 
 ## Current acceptance evidence (2026-08-16)
 
-- Published release: `0.1.5`.
-- Effective MoonBit source: 34 tracked `.mbt` files / 4056 lines.
-- Automated tests: 46 passed with `moon test --deny-warn`.
-- Static gate: `moon check --deny-warn`.
+- Published release: `0.1.6`.
+- Effective MoonBit source: 36 tracked `.mbt` files / 4182 lines.
+- Automated tests: 47 passed with `moon test --deny-warn` across native, wasm, wasm-gc, and JS.
+- Static gate: `moon check --deny-warn --target all`.
 - Boundary coverage includes invalid coordinates, empty inputs, clipped latitude, malformed GeoJSON rings, disconnected graphs, radius limits, and route cost limits.
 - Reproducible fixtures: `benchmarks/fixtures/cn-city-points.geojson` and `benchmarks/fixtures/global-city-points.geojson`.
 - The submitted proposal is preserved at `C:\Users\33046\Downloads\MoonGeoRoute-申报书.md`; repository enhancements stay within its declared GIS, spatial-index, GeoJSON, and routing scope.

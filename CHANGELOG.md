@@ -1,5 +1,11 @@
 # 变更记录
 
+## 2026-08-16 (0.1.6)
+
+- Added a four-target strict GitHub Actions matrix for native, wasm, wasm-gc, and JS.
+- Added an executable real-city coverage to service-network routing workflow with 47 passing tests.
+- Documented the data-licensing boundary between public point fixtures and external road-network imports.
+
 ## 2026-08-16 (0.1.5)
 
 - 发布严格诊断修正版，native、wasm、wasm-gc 和 JS 目标均完成验证。
@@ -18,7 +24,7 @@
 - Added recursive GeoJSON validation reports for coordinate ranges, line lengths, polygon closure, and nested geometries.
 - Added spatial radius, ordered nearest-match, density, and regular-grid analysis APIs.
 - Added road-network counts, edge checks, breadth-first reachability, import audit statistics, and route limit checks.
-- Added a global-city GeoJSON fixture and boundary-focused regression tests; the release candidate now contains 41 MoonBit source files and 46 passing tests.
+- Added a global-city GeoJSON fixture and boundary-focused regression tests; the release candidate now contains 36 MoonBit source files and 47 passing tests.
 
 ## 2026-08-11
 
