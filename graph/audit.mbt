@@ -53,7 +53,7 @@ pub fn RoadNetwork::reachable_nodes(
   if self.nodes.get(start_id) is None {
     return []
   }
-  let visited : Map[String, Bool] = {}
+  let visited : Map[String, Bool] = Map([])
   let queue = [start_id]
   visited.set(start_id, true)
   let mut head = 0

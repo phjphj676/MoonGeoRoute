@@ -2,7 +2,7 @@
 test "geojson point feature serialization and parsing" {
   let pt = @coord.Coord::new(39.9042, 116.4074)
   let geom = @coord.Geometry::Point(pt)
-  let props : Map[String, Json] = {}
+  let props : Map[String, Json] = Map([])
   props.set("name", Json::string("Beijing"))
   let f = Feature::new(geom, id="CN-BJ", properties=props)
 

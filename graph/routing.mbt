@@ -83,8 +83,8 @@ pub fn RoadNetwork::dijkstra(
     return None
   }
 
-  let dist : Map[String, Double] = {}
-  let prev : Map[String, String] = {}
+  let dist : Map[String, Double] = Map([])
+  let prev : Map[String, String] = Map([])
   let heap = MinHeap::new()
 
   dist.set(start_id, 0.0)
@@ -176,8 +176,8 @@ pub fn RoadNetwork::a_star(
     None => fn(u, v) { @geomath.haversine_distance(u.coord, v.coord) }
   }
 
-  let dist : Map[String, Double] = {}
-  let prev : Map[String, String] = {}
+  let dist : Map[String, Double] = Map([])
+  let prev : Map[String, String] = Map([])
   let heap = MinHeap::new()
 
   dist.set(start_id, 0.0)

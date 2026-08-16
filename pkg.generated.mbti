@@ -29,4 +29,3 @@ pub fn route_preview(Array[(Int, Int)]) -> String
 // Type aliases
 
 // Traits
-

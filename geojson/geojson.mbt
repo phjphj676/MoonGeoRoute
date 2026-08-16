@@ -57,7 +57,7 @@ fn coord_from_json(json : Json) -> @coord.Coord raise GeoJsonParseError {
 ///|
 /// Serializes a `Geometry` to its GeoJSON representation (`type` and `coordinates`).
 pub fn geometry_to_json(geom : @coord.Geometry) -> Json {
-  let map : Map[String, Json] = {}
+  let map : Map[String, Json] = Map([])
   match geom {
     Point(c) => {
       map.set("type", Json::string("Point"))
@@ -268,7 +268,7 @@ pub fn geometry_from_json(
 ///|
 /// Serializes a `Feature` to GeoJSON object format.
 pub fn Feature::to_json(self : Feature) -> Json {
-  let map : Map[String, Json] = {}
+  let map : Map[String, Json] = Map([])
   map.set("type", Json::string("Feature"))
   match self.id {
     Some(id_str) => map.set("id", Json::string(id_str))
@@ -318,7 +318,7 @@ pub fn Feature::from_json_value(json : Json) -> Feature raise GeoJsonParseError 
 ///|
 /// Serializes a `FeatureCollection` to GeoJSON format.
 pub fn FeatureCollection::to_json(self : FeatureCollection) -> Json {
-  let map : Map[String, Json] = {}
+  let map : Map[String, Json] = Map([])
   map.set("type", Json::string("FeatureCollection"))
   let arr = []
   for f in self.features {

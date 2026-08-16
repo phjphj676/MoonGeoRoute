@@ -28,7 +28,7 @@
 - `moon check`：通过
 - `moon test`：通过
 - `moon version --all`：已能识别 `moonc v0.10.3`
-- Mooncakes：`phjphj676/moongeoroute@0.1.3` 已完成发布，发布前校验和发布包复检均通过。
+- Mooncakes：`phjphj676/moongeoroute@0.1.4` 已完成发布，发布前校验和发布包复检均通过。
 
 ## Verified release-candidate evidence
 
